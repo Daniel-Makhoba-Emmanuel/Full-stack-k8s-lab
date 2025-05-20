@@ -1,0 +1,52 @@
+# Stage 1: Build the React application
+FROM node:lts-alpine AS build
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package.json and package-lock.json (or yarn.lock) first to leverage Docker cache
+COPY react-hello-world-start/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the frontend application code
+COPY react-hello-world-start/ .
+
+# Build the React application for production
+RUN npm run build
+
+# --- End of Build Stage ---
+
+# Stage 2: Serve the application with Nginx
+FROM nginx:stable-alpine AS production
+
+# fix a security vulnerability in the alpine image
+RUN apk update --no-cache && apk upgrade
+
+# Create a non-root user and group
+RUN addgroup -g 1000 appgroup && adduser -u 1000 -G appgroup -s /bin/sh -D appuser
+
+# Copy the built React app from the build stage to the Nginx html directory
+COPY --from=build /app/dist /usr/share/nginx/html
+
+#Copying a custom Nginx configuration file to communicate with backend
+COPY react-hello-world-start/nginx.conf /etc/nginx/conf.d/default.conf
+
+# Ensure the non-root user has access to the files by changing ownership AS ROOT
+RUN chown -R appuser:appgroup /usr/share/nginx/html /etc/nginx/conf.d/default.conf
+
+
+# Ensure non-root user has write permissions for Nginx cache and PID file directory
+RUN mkdir -p /var/cache/nginx/client_temp /run \
+    && chown -R appuser:appgroup /var/cache/nginx /run
+
+# Set the user to run Nginx (switch to non-root user after changing ownership)
+USER appuser
+
+# Expose port 80
+EXPOSE 80
+
+# Command to run Nginx and ensure the daemon runs in the foreground
+# This is important for Docker to keep the container running
+CMD ["nginx", "-g", "daemon off;"]

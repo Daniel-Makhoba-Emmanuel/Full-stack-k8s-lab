@@ -1,0 +1,114 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 160 33% 17%;
+    --foreground: 160 40% 98%;
+
+    --card: 162 84% 4.9%;
+    --card-foreground: 160 40% 98%;
+
+    --popover: 162 84% 4.9%;
+    --popover-foreground: 160 40% 98%;
+
+    --primary: 142 89% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 80% 36%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 160 33% 17%;
+    --muted-foreground: 160 20.2% 65.1%;
+
+    --accent: 160 80% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 160 40% 98%;
+
+    --border: 160 32.6% 17.5%;
+    --input: 160 32.6% 17.5%;
+    --ring: 160 76.3% 48%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 162 84% 4.9%;
+    --foreground: 160 40% 98%;
+
+    --card: 162 84% 4.9%;
+    --card-foreground: 160 40% 98%;
+
+    --popover: 162 84% 4.9%;
+    --popover-foreground: 160 40% 98%;
+
+    --primary: 160 40% 98%;
+    --primary-foreground: 162 47.4% 11.2%;
+
+    --secondary: 160 32.6% 17.5%;
+    --secondary-foreground: 160 40% 98%;
+
+    --muted: 160 32.6% 17.5%;
+    --muted-foreground: 160 20.2% 65.1%;
+
+    --accent: 160 32.6% 17.5%;
+    --accent-foreground: 160 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 160 40% 98%;
+
+    --border: 160 32.6% 17.5%;
+    --input: 160 32.6% 17.5%;
+    --ring: 160 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-mono tracking-tight;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* Tech-inspired custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-900;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-emerald-600 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-green-500;
+  }
+}
+
+/* Tech patterns and effects */
+.tech-grid {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+}
+
+.glow-effect {
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}

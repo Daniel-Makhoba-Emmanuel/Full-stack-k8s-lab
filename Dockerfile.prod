@@ -1,0 +1,47 @@
+# ---Build stage ---
+# Use the official Golang image to build the Go application
+FROM golang:latest AS builder
+# Set the working directory inside the container
+WORKDIR /app
+
+#copy the go mod and sum files
+COPY go.mod go.sum ./
+
+# Download the Go module dependencies explicitely
+# This is done to take advantage of Docker's caching mechanism
+# If the go.mod file doesn't change, the dependencies won't be re-downloaded
+RUN go mod download
+
+# copy the source code into the container
+COPY . .
+
+# Build the Go application
+# cgo_enabled=0 disables CGO, which is useful for cross-compilation and staically linked libraries
+# GOOS=linux sets the target OS to Linux
+# -o main specifies the output binary name as 'main' the current dirctory (/app)
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o main .
+
+# --- Runtime stage ---
+# Use a minimal base image for the runtime
+FROM alpine:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# For healthcheck
+RUN apk update && apk add --no-cache curl
+
+#copy the binary from the builder stage
+COPY --from=builder /app/main .
+
+# Create a non-root user and switch to it (security best practice)
+RUN adduser -u 10001 -D appuser
+USER appuser
+
+
+# Inform the docker that the container listns on the port 8080 at runtime
+EXPOSE 8080
+
+#specify to run when the container starts
+#use the exec form (perferred) of CMD
+CMD ["./main"]
