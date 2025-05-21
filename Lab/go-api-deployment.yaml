@@ -4,15 +4,18 @@ metadata:
   name: go-api-deployment
   labels:
     app: go-api
+    env: production
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: go-api
+      env: production
   template:
     metadata:
       labels:
         app: go-api
+        env: production
     spec:
       containers:
         - name: go-api-container
