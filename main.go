@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	databases "full-stack-docker-prod/Databases"
 	"full-stack-docker-prod/routes"
 	"log"
 	"os"
@@ -11,8 +10,6 @@ import (
 )
 
 func main() {
-	databases.ConnectDB()    // Connect to the database
-	databases.ConnectRedis() // Connect to Redis
 
 	//create a new router
 	router := gin.Default()
