@@ -5,7 +5,7 @@ FROM golang:latest AS builder
 WORKDIR /app
 
 #copy the go mod and sum files
-COPY go.mod go.sum ./
+COPY backend/go.mod backend/go.sum ./
 
 # Download the Go module dependencies explicitely
 # This is done to take advantage of Docker's caching mechanism
@@ -13,7 +13,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # copy the source code into the container
-COPY . .
+COPY backend/ .
 
 # Build the Go application
 # cgo_enabled=0 disables CGO, which is useful for cross-compilation and staically linked libraries
