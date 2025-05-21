@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: deployment
+metadata:
+  name: go-api-deployment
+  labels:
+    app: go-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-api
+  template:
+    metadata:
+      labels:
+        app: go-api
+    spec:
+      containers:
+        - name: go-api-container
+          image: iamdanielemmanuel22643/portfolio_api:latest 
+          ports:
+            - containerPort: 8080 # Port your Go API listens on
+          
