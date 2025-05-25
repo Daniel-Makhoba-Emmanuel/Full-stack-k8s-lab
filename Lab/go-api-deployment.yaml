@@ -19,4 +19,11 @@ spec:
           image: iamdanielemmanuel22643/portfolio_api:latest 
           ports:
             - containerPort: 8080 # Port your Go API listens on
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "300m" # Adjust as necessary for your application
           
