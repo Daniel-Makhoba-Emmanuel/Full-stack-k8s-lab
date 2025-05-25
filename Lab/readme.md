@@ -1,3 +1,3 @@
 Reference for future structure
 
-![alt text](../resources/structure.png)
+![alt text](../resources/structure.jpeg)
