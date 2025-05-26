@@ -5,9 +5,9 @@ metadata:
   labels:
     app: go-api
   annotations:
-    kubernetes.io/change-cause: "Replicas changed to 4 for scaling"
+    kubernetes.io/change-cause: "Replicas changed to 3 for scaling"
 spec:
-  replicas: 4
+  replicas: 3
   selector:
     matchLabels:
       app: go-api
