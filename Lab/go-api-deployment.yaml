@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: go-api-container
-          image: iamdanielemmanuel22643/portfolio_api:latest 
+          image: iamdanielemmanuel22643/portfolio_api:13 
           ports:
             - containerPort: 8080 # Port your Go API listens on
           resources:
