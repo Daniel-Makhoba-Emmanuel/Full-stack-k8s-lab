@@ -1,21 +1,31 @@
-apiVersion: apps/v1 #ApiVersion for Deployment
-kind: Deployment    # Defining the kind of resource
+apiVersion: apps/v1 
+kind: Deployment   
 metadata:
-  name: nginx-deployment # Name of the deployment
+  name: nginx-configmap-deployment 
   labels:
-    app: nginx-app # Label for the deployment itself
+    app: nginx-custom
+  annotations:
+    kubernetes.io/change-cause: "Deployment created with custom Nginx configuration"
 spec:
-  replicas: 2 # Number of replicas
+  replicas: 1 
   selector:
-    matchLabels: #deines how the deployment finds which pods to manage
-      app: nginx-app # Label selector for the pods
-  template: # descibes the pods that the deployment will create
+    matchLabels: 
+      app: nginx-custom 
+  template: 
     metadata:
       labels:
-        app: nginx-app # must match the selector above
+        app: nginx-custom # must match the selector above
     spec:
       containers:
-        - name: nginx-container
+        - name: nginx
           image: nginx:latest
           ports:
             - containerPort: 80 
+          volumeMounts:
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/nginx.conf # Path inside the container where the contents of the configmap will be mounted
+              subPath: nginx.conf #allows to mount specific file from the ConfigMap instead of the entire ConfigMap
+      volumes:
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config # Name of the ConfigMap to use
