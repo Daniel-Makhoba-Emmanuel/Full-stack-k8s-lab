@@ -16,7 +16,13 @@ func main() {
 
 	routes.HelloRoute(router)
 
-	port := os.Getenv("PORT")
+	apiHost := os.Getenv("API_HOST")
+	apiPort := os.Getenv("API_PORT")
+	randomEnvValue := os.Getenv("RANDOM_ENV_VALUE")
+
+	fmt.Printf("API Host: %s, API Port: %s, Randow Env Value: %s\n", apiHost, apiPort, randomEnvValue)
+
+	port := os.Getenv("API_PORT")
 	if port == "" {
 		port = "8080" // Default port if not specified
 	}

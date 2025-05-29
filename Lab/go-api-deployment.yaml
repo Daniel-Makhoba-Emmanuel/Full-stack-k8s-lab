@@ -28,4 +28,20 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "300m" # Adjust as necessary for your application
+          env:
+            - name: API_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: go-api-config
+                  key: API_PORT
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: go-api-config
+                  key: DB_HOST
+            - name: RANDOM_ENV_VALUE
+              valueFrom:
+                configMapKeyRef:
+                  name: go-api-config
+                  key: RANDOM_ENV_VALUE
           

@@ -1,6 +1,9 @@
 name: Image Build,Scan and Push(production)
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch: 
 
 jobs:
