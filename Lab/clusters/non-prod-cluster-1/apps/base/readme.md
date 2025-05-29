@@ -1,0 +1,1 @@
+Common applications/add-ons that are foundational to this cluster,regardless of the environment (e.g., Argo CD itself, Cert-Manager).

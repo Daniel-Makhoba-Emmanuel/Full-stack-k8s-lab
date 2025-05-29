@@ -1,0 +1,1 @@
+# Prod-specific Kustomize: points to base, patches image to `stable` tag, 5+ replicas, high resources.

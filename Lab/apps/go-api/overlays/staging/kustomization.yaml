@@ -1,0 +1,1 @@
+# Staging-specific Kustomize: points to base, patches image to `rc` tag, 3 replicas, medium resources.

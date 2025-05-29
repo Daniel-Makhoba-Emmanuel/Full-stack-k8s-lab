@@ -1,0 +1,1 @@
+# Dev-specific Kustomize: points to base, patches image tag to `dev-latest`, sets 1 replica, low resources.

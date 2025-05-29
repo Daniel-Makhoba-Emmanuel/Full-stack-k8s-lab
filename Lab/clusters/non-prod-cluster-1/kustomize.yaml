@@ -1,0 +1,4 @@
+# Kustomize for bundling `infra` and `apps` for this cluster
+# This Kustomization acts as the root for deploying to `non-prod-cluster-1`.
+# It aggregates all `apps` and `infra` definitions for this specific cluster.
+# An Argo CD Project/Application could point directly to this directory.

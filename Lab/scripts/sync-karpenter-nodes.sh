@@ -1,0 +1,1 @@
+# Example: Script to check/manage Karpenter nodes status

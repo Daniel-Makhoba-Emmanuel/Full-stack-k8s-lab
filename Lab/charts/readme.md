@@ -1,0 +1,1 @@
+# This directory holds custom Helm charts created by your team, or more commonly, `values.yaml` overrides for *third-party* Helm charts. It decouples the values from the cluster/application definitions.
