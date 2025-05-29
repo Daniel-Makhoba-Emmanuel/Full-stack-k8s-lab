@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
-metadatae:
+metadata:
   name: go-api-config
 data:
   API_PORT: "8080"
