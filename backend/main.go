@@ -20,7 +20,7 @@ func main() {
 	apiPort := os.Getenv("API_PORT")
 	randomEnvValue := os.Getenv("RANDOM_ENV_VALUE")
 
-	fmt.Printf("API Host: %s, API Port: %s, Randow Env Value: %s\n", apiHost, apiPort, randomEnvValue)
+	log.Printf("API Host: %s, API Port: %s, Randow Env Value: %s\n", apiHost, apiPort, randomEnvValue)
 
 	port := os.Getenv("API_PORT")
 	if port == "" {
