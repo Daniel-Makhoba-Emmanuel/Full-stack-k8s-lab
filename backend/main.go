@@ -16,11 +16,11 @@ func main() {
 
 	routes.HelloRoute(router)
 
-	apiHost := os.Getenv("API_HOST")
+	dbHost := os.Getenv("DB_HOST")
 	apiPort := os.Getenv("API_PORT")
 	randomEnvValue := os.Getenv("RANDOM_ENV_VALUE")
 
-	log.Printf("API Host: %s, API Port: %s, Randow Env Value: %s\n", apiHost, apiPort, randomEnvValue)
+	log.Printf("DB Host: %s, API Port: %s, Randow Env Value: %s\n", dbHost, apiPort, randomEnvValue)
 
 	port := os.Getenv("API_PORT")
 	if port == "" {
