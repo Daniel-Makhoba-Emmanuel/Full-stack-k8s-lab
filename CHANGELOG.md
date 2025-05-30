@@ -26,7 +26,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Fixed
 
 
-## [2025-05-15] - ChangeLog Initialization
+## [30-05-2025] - ChangeLog Initialization
 
 ### Added
 -   Initial `CHANGELOG.md` created.
