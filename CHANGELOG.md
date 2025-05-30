@@ -1,39 +1,35 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+All notable changes and planned additions to this Lab will be documented in this file.
 
 ## [Unreleased]
 
 ### Added
--   **Planning:** Implement a new `Ingress` example demonstrating NGINX Ingress Controller.
--   **Planning:** Add a section on `NetworkPolicies` for isolation between namespaces.
--   **Planning:** Introduce `Helm` for deploying a sample application (e.g., WordPress).
--   **Planning:** Update `README.md` with a detailed prerequisites list.
--   **Planning:** Research `KubeVirt` for running VMs in Kubernetes.
+-   **Planning:** Implement HarshiCorp vault into Lab for secrets management.
+
+-   **Planning:** Create `/health`endpoint for GO API pod probes.
+
+-   **Planning:** Create Liveness Probe for GO API pod .
+
+-   **Planning:** Create Readiness Probe for GO API pods probes.
+
+-   **Planning:** Create startup Probe for GO API pods probes.
+
 
 ### Changed
--   **Planning:** Refactor existing `Deployment` YAMLs to use `resource limits` and `requests`.
--   **Planning:** Update all `kubectl` commands to use explicit API versions where applicable.
+-   **Planning:** Migrate to `new-repo-branch` structure for Lab.
+
+
 
 ### Fixed
--   **Planning:** Address known issue where `port-forward` sometimes hangs. (Need to find a better solution or document workaround).
 
-## [0.1.0] - 2025-05-30
+
+## [2025-05-15] - ChangeLog Initialization
 
 ### Added
--   Initial setup of Kubernetes lab.
--   Basic `Deployment` and `Service` examples.
--   `Pod` creation demonstration.
--   `Volume` mounts with `emptyDir` and `hostPath`.
+-   Initial `CHANGELOG.md` created.
 
 ### Changed
--   Switched from `kubectl run` to `kubectl apply -f` for better declarative management.
-
+-   Updated Deployment files to inject all environment variables from a ConfigMap into pods, instead of individual key-value pairs.
+  
 ### Fixed
--   Corrected a typo in the `README.md` about `NodePort` range.
-
-## [0.0.1] - 2025-05-25 (Initial commit/placeholder)
--   Project repository created.
