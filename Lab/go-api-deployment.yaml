@@ -32,3 +32,9 @@ spec:
           envFrom:
             - configMapRef:
                 name: go-api-config # Reference to the ConfigMap created in go-api-configmap.yaml
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-password-secret # Reference to the Secret created in db-password-secret.yaml
+                  key: DB_PASSWORD
