@@ -11,5 +11,5 @@ spec:
     - protocol: TCP
       name: http
       port: 80      # Port exposed by the service
-      targetPort: 8080 # Port on the container
+      targetPort: http-api # Port on the container
   type: ClusterIP # Type of service (ClusterIP, NodePort, LoadBalancer, etc.)
