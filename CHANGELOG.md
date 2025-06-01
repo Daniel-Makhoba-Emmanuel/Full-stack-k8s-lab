@@ -28,7 +28,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [30-05-2025] - ChangeLog Initialization
+## [01-06-2025] - ChangeLog Initialization
 
 ### Added
 -   Added Observability namespace.
