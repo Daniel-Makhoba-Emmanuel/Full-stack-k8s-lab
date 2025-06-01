@@ -11,8 +11,7 @@ All notable changes and planned additions to this Lab will be documented in this
    
 
 -   **Planning:** Create `/health`endpoint for GO API pod probes.
-
--   **Planning:** Create Liveness Probe for GO API pod .
+reate 
 
 -   **Planning:** Create Readiness Probe for GO API pods probes.
 
@@ -32,8 +31,12 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Added
 -   Added Observability namespace.
+-   Created `/health` endpoint for liveness probe
+-   Added Liveness probe for Go API pod
 
 ### Changed
+-   Modified go api deployment to include liveness probe
+  
   
 ### Fixed
 

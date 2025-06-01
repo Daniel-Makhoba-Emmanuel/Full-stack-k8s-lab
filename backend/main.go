@@ -16,6 +16,7 @@ func main() {
 
 	routes.HelloRoute(router)
 	routes.HealthRoute(router)
+	routes.ReadyRoute(router)
 
 	dbHost := os.Getenv("DB_HOST")
 	apiPort := os.Getenv("API_PORT")

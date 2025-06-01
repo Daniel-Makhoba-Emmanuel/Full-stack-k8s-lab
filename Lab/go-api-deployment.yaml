@@ -31,7 +31,15 @@ spec:
             periodSeconds: 10 # Interval between probes
             timeoutSeconds: 5 # Timeout for each probe
             failureThreshold: 3 # Number of failures before marking the container as unhealthy
-          resources:
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-api
+              scheme: HTTP    
+            initialDelaySeconds: 2 
+            periodSeconds: 5 
+            timeoutSeconds: 3 
+            failureThreshold: 2 
             requests:
               memory: "128Mi"
               cpu: "100m"
