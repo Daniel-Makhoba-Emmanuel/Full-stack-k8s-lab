@@ -22,6 +22,15 @@ spec:
           ports:
             - name: http-api
               containerPort: 8080 # Port your Go API listens on
+          livenessProbe:
+            httpGet:  
+              path: /health
+              port: http-api
+              scheme: HTTP    # Use HTTP or HTTPS based on your API
+            initialDelaySeconds: 30 # Delay before the first probe
+            periodSeconds: 10 # Interval between probes
+            timeoutSeconds: 5 # Timeout for each probe
+            failureThreshold: 3 # Number of failures before marking the container as unhealthy
           resources:
             requests:
               memory: "128Mi"
