@@ -27,15 +27,20 @@ reate
 
 ### Fixed
 
-## [02-06-2025] - Kubetail
+## [02-06-2025] - Kubetail and nginx
 
 ### Added
 -  Added the reason for kubetail usage to the problem and solutions markdown
 
+- Added sidecar container pod
+
 ### Changed
-  
+- Changed nginx service to communicate with existing deployment and new sidecar container pod
+
+- Removed basic pod.yaml
   
 ### Fixed
+
 
 ## [01-06-2025] - Observability and Probes
 
