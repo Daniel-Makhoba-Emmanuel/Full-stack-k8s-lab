@@ -5,3 +5,9 @@ The lab uses KIND(Kubernetes in Docker) to deploy k8s, and by default in a stand
 
 ### Solution
 To solve this I made a config.yaml with a control plane and worker nodes. The old plane was deleted and this config.yaml deployed. The taint for the control-plane was then able to take effect and all workloads were deployed to the worker nodes.
+
+## 2. Too many Logs to monitor
+As the pod count kept on increasing, so had the difficulty when monitoring the logs in real time.
+
+### Solution 
+I found a tool called kubetail that allows uses a web dashboard to to display all the logs in my cluster in real-time. I can filter logs by time, pod, namespace and node. And i can also switch between local and remote clusters making it ideal for porduction. I gave a breakdown on this here https://x.com/DanielMakhoba_E/status/1929112097272557761

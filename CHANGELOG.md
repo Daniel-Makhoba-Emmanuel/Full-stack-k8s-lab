@@ -27,7 +27,17 @@ reate
 
 ### Fixed
 
-## [01-06-2025] - ChangeLog Initialization
+## [02-06-2025] - Kubetail
+
+### Added
+-  Added the reason for kubetail usage to the problem and solutions markdown
+
+### Changed
+  
+  
+### Fixed
+
+## [01-06-2025] - Observability and Probes
 
 ### Added
 -   Added Observability namespace.
