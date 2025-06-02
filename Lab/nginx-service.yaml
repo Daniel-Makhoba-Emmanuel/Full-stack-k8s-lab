@@ -6,7 +6,7 @@ metadata:
     app: nginx-custom
 spec:
   selector:
-    app: nginx-custom
+    environment: nginx # Match the label used in the Deployment
   ports:
     - protocol: TCP
       name: http

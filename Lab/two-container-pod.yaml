@@ -1,0 +1,34 @@
+# Web Server + Log Generator Pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-server-log-generator-shared-data-pod
+  labels:
+    app: web-server-log-generator
+    environment: nginx
+spec:
+  containers:
+    - name: web-server
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: shared-data-volume # Mounted EmptyDir volume
+          mountPath: /usr/share/nginx/html # Nginx default seving directory
+
+    - name: log-generator
+      image: busybox:latest
+      command: ["sh", "-c"]
+      args:
+        - while true; do
+            echo "$(date) - Log entry from log-generator" >> /var/log/app.log;
+            sleep 1;
+          done
+      volumeMounts:
+        - name: shared-data-volume # Mounted EmptyDir volume
+          mountPath: /var/log # Log file directory
+
+  volumes:
+    - name: shared-data-volume
+      emptyDir: {} # EmptyDir volume for shared data between containers

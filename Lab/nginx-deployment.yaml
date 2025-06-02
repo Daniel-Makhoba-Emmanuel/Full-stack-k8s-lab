@@ -11,10 +11,12 @@ spec:
   selector:
     matchLabels: 
       app: nginx-custom 
+      environment: nginx # Example label for environment
   template: 
     metadata:
       labels:
         app: nginx-custom # must match the selector above
+        environment: nginx # Example label for environment
     spec:
       containers:
         - name: nginx
