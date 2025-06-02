@@ -13,7 +13,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Changed
 -   **Planning:** Migrate to `new-repo-branch` structure for Lab.
 
--   **Planning:** Change to sealed secrets fpr secret management
+-   **Planning:** Change to sealed secrets for secret management
 
 
 
