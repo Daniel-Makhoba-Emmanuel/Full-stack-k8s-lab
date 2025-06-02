@@ -8,15 +8,7 @@ All notable changes and planned additions to this Lab will be documented in this
 -   **Planning:** Implement HarshiCorp vault into Lab for secrets management.
 
 -   **Planning:** Add Kubetail and expose it in the observability namespace
-   
-
--   **Planning:** Create `/health`endpoint for GO API pod probes.
-reate 
-
--   **Planning:** Create Readiness Probe for GO API pods probes.
-
--   **Planning:** Create startup Probe for GO API pods probes.
-
+    
 
 ### Changed
 -   **Planning:** Migrate to `new-repo-branch` structure for Lab.
@@ -48,6 +40,8 @@ reate
 -   Added Observability namespace.
 -   Created `/health` endpoint for liveness probe
 -   Added Liveness probe for Go API pod
+-   Created Readiness Probe for GO API pods probes.
+-   Created `/ready` endpoint for readiness probe
 
 ### Changed
 -   Modified go api deployment to include liveness probe
