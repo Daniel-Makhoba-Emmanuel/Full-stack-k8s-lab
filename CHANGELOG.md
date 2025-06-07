@@ -33,7 +33,6 @@ All notable changes and planned additions to this Lab will be documented in this
   
 ### Fixed
 -  Fixed deviatinf namespaces (dev and staging)
--  
 
 ### Removed
 -  Hostpath manifests
