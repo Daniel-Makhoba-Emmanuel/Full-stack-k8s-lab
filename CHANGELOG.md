@@ -27,7 +27,7 @@ All notable changes and planned additions to this Lab will be documented in this
 -  Added Tools directory to show the tools being used in the lab
 
 ### Changed
-- Removed old Architecture diagram in lab
+-  Removed old Architecture diagram in lab
   
 ### Fixed
 
