@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: my-local-pvc
+  name: custom-local-storage-class
 spec:
   accessModes:
     - ReadWriteOnce
