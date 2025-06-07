@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: hostpath-pv #name of the persitent volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce # Volume can be mounted as read-write by a sinle node
+  hostPath:
+    path: "/mnt/data/my-app-data"
+    type: DirectoryOrCreate # Create the directory if it does not exist
+  persistentVolumeReclaimPolicy: Retain 
