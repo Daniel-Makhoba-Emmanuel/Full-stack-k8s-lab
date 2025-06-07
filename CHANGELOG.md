@@ -14,7 +14,6 @@ All notable changes and planned additions to this Lab will be documented in this
 -   **Planning:** Migrate to `new-repo-branch` structure for Lab.
 
 -   **Planning:** Change to sealed secrets for secret management
--   **Planning:** Update tools docs for kubetail and kube-diagram
 
 
 
@@ -27,11 +26,13 @@ All notable changes and planned additions to this Lab will be documented in this
 
 -  Added Tools directory to show the tools being used in the lab
 
+-  Added Tools docs for kubetail and kube-diagram
+
 ### Changed
 -  Removed old Architecture diagram in lab
   
 ### Fixed
-
+-  Fixed deviatinf namespaces(dev and staging)
 
 ## [02-06-2025] - Kubetail and nginx
 

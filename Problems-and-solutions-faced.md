@@ -20,4 +20,10 @@ When experimenting with sidecar containers (web server(nginx) + logger) and a se
 ### Solution
 This highlighted how the service object works. It is not aware of which pods have a particular path rather it merely checks if they'ready and sends traffic , which can result in a miss or a hit. To solve i would use an ingress controller to enable path absed routing
 
-## 4. Dev-Staging deviation
+## 4. Maintaining architecture
+As the Lab grows, the number of elements (Clusters, namespaces, replicasets, pods etc.) keep increasing, making it harder to keep track of the architecture, and wastes time trying to develop it.
+
+### Solution
+I found a tool called KubeDiagrams which solves this by using the manifests,helm, and kubectl to determine the state of the environment. KubeDiagrams can also be integrated into CI/CD pipelines and is suitable
+
+![alt text](resources/Architecture.png)
