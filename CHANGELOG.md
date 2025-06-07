@@ -19,6 +19,19 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
+## [07-06-2025] - Kube-daiagrams 
+
+### Added
+-  Added new tool kube-diagrams to generate architecture, saving more time 
+
+-  Added Tools directory to show the tools being used in the lab
+
+### Changed
+- Removed old Architecture diagram in lab
+  
+### Fixed
+
+
 ## [02-06-2025] - Kubetail and nginx
 
 ### Added
