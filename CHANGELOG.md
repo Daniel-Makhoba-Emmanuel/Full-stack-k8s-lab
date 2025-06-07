@@ -32,7 +32,11 @@ All notable changes and planned additions to this Lab will be documented in this
 -  Removed old Architecture diagram in lab
   
 ### Fixed
--  Fixed deviatinf namespaces(dev and staging)
+-  Fixed deviatinf namespaces (dev and staging)
+-  
+
+### Removed
+-  Hostpath manifests
 
 ## [02-06-2025] - Kubetail and nginx
 
