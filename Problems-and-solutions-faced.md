@@ -19,3 +19,5 @@ When experimenting with sidecar containers (web server(nginx) + logger) and a se
 
 ### Solution
 This highlighted how the service object works. It is not aware of which pods have a particular path rather it merely checks if they'ready and sends traffic , which can result in a miss or a hit. To solve i would use an ingress controller to enable path absed routing
+
+## 4. Dev-Staging deviation
