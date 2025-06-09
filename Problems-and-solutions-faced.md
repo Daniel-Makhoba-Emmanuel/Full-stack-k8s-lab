@@ -27,3 +27,9 @@ As the Lab grows, the number of elements (Clusters, namespaces, replicasets, pod
 I found a tool called KubeDiagrams which solves this by using the manifests,helm, and kubectl to determine the state of the environment. KubeDiagrams can also be integrated into CI/CD pipelines and is suitable
 
 ![alt text](resources/Architecture.png)
+
+## 5. Termination Period taking too long
+One of my pods was taking too long to terminate, although it eventually did, the possibility that it wouldn't always terminate on-time still existed
+
+### solution 
+To prevent this i added a termination grace period cluster-wide on all deployments
