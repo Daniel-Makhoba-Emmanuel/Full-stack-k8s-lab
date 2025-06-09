@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadatae:
-  name: go-api-config
-data:
-  API_PORT: "8080"
-  DB_HOST: "localhost"
-  RANDOM_ENV_VALUE: "random_value" 
