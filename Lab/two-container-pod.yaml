@@ -8,6 +8,7 @@ metadata:
     app: web-server-log-generator
     environment: nginx
 spec:
+  terminationGracePeriodSeconds: 60 # Grace period for pod termination
   containers:
     - name: web-server
       image: nginx:latest

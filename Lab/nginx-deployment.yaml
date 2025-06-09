@@ -18,6 +18,7 @@ spec:
         app: nginx-custom # must match the selector above
         environment: nginx # Example label for environment
     spec:
+      terminationGracePeriodSeconds: 60 # Grace period for pod termination
       containers:
         - name: nginx
           image: nginx:latest

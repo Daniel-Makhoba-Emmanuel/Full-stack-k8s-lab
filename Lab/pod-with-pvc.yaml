@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: pod-with-pvc
 spec:
+  terminationGracePeriodSeconds: 60 # Grace period for pod termination
   containers:
     - name: pvc-container
       image: busybox:latest

@@ -16,6 +16,7 @@ spec:
       labels:
         app: go-api
     spec:
+      terminationGracePeriodSeconds: 60 # Grace period for pod termination
       containers:
         - name: go-api-container
           image: iamdanielemmanuel22643/portfolio_api:latest 
