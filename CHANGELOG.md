@@ -19,6 +19,17 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
+## [09-06-2025] - Termination Grace Periods
+
+### Added
+
+
+### Changed
+
+  
+### Fixed
+-  Fixed pods taking too long to terminate by adding termination grace periods
+
 ## [07-06-2025] - Kube-daiagrams 
 
 ### Added
