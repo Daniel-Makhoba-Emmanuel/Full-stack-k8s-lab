@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless-service
+  labels:
+    app: nginx-headless
+spec:
+  selector:
+    app: nginx-statefulset # This should match the label used in the StatefulSet
+  ports:
+    - port: 80
+      name: web
+  clusterIP: None # This makes the service headless
