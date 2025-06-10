@@ -29,6 +29,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 
 ### Changed
+- Removed nodeport yaml as its no longer needed
 
   
 ### Fixed
