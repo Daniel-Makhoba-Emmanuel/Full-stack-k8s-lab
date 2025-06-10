@@ -21,9 +21,11 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [10-06-2025] - Termination Grace Periods
+## [10-06-2025] - Statefulsets
 
 ### Added
+- Added Nginx statefulset
+- Added Nginx headless service for statefulset
 
 
 ### Changed
