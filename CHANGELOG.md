@@ -21,6 +21,18 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
+## [12-06-2025] - Stateful Services
+
+### Added
+
+
+### Changed
+- Updated root ReadMe with instructions on navigating the repository
+
+  
+### Fixed
+
+
 ## [10-06-2025] - Statefulsets
 
 ### Added
