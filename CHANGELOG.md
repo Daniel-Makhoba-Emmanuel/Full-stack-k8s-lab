@@ -24,6 +24,9 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [12-06-2025] - Stateful Services
 
 ### Added
+- Added postgres stateful set
+- Added postgres headless service
+- Added postgres secret
 
 
 ### Changed
