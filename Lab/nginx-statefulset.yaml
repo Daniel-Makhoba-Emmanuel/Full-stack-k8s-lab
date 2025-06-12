@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: nginx-statefulset
-  replicas: 1
+  replicas: 3
   minReadySeconds: 10 # Minimum time a pod should be ready before considering it available
   template:
     metadata:
@@ -15,6 +15,13 @@ spec:
         app: nginx-statefulset
     spec:
       terminationGracePeriodSeconds: 10
+      initContainers:
+      - name: copy-nginx-content
+        image: busybox:latest 
+        command: ["sh", "-c", "echo '<h1>Hello from Nginx StatefulSet Pod</h1>' > /usr/share/nginx/html/index.html"]
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
       containers:
         - name: nginx
           image: nginx:latest
