@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-headless-service
+  labels:
+    app: postgres-statefulset
+spec:
+  selector:
+    app: postgres-statefulset # This should match the label used in the StatefulSet
+  ports:
+    - port: 5432
+      name: postgres
+  clusterIP: None 

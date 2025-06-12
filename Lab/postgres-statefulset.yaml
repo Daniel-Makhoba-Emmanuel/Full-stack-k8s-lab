@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres-statefulset
+spec:
+  serviceName: postgres-headless-service
+  selector:
+    matchLabels:
+      app: postgres-statefulset
+  replicas: 1
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: postgres-statefulset
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            - name: POSTGRES_DB
+              value: labdatabase
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data # Default data directory for PostgreSQL
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        storageClassName: custom-local-storage-class
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 1Gi # Requesting 1Gi of storage for the volume

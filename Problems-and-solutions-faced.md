@@ -33,3 +33,10 @@ One of my pods was taking too long to terminate, although it eventually did, the
 
 ### solution 
 To prevent this i added a termination grace period cluster-wide on all deployments
+
+## 6. Stateful Postgres Error - Residual data from PVC
+I made an error with an init container in the pod. It was writing a txt file to the path of the volumeMount. The pod went into a crashBackLoop. 
+
+
+### Solution
+I didn't realize that postgres runs an initDB on that path to check if it's empty. I fixed that by deleting the init container, but I was still getting the same error. I realized that the pvc (with the edited path) used was still available and the pod was connecting to it. I deleted the old pvc and re-ran the manifest, which successfully provisioned the pod
