@@ -31,6 +31,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
   
 ### Fixed
+- Fixed "403 forbidden" error on nginx stateful pods with an init container
 
 
 ## [10-06-2025] - Statefulsets
