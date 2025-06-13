@@ -6,7 +6,7 @@ metadata:
     app: postgres-statefulset
 spec:
   selector:
-    app: postgres-statefulset # This should match the label used in the StatefulSet
+    app: postgres-statefulset 
   ports:
     - port: 5432
       name: postgres

@@ -6,8 +6,8 @@ metadata:
     app: nginx-headless
 spec:
   selector:
-    app: nginx-statefulset # This should match the label used in the StatefulSet
+    app: nginx-statefulset 
   ports:
     - port: 80
       name: web
-  clusterIP: None # This makes the service headless
+  clusterIP: None 
