@@ -11,7 +11,7 @@ import (
 
 var DB *gorm.DB
 
-func connectToPostgres() error {
+func ConnectToPostgres() {
 	//Read credentials from environment variables
 	dbHost := os.Getenv("POSTGRES_HOST")
 	dbUser := os.Getenv("POSTGRES_USER")
@@ -33,6 +33,4 @@ func connectToPostgres() error {
 
 	fmt.Println("Connected to PostgreSQL database")
 	DB = db
-	return nil
-
 }

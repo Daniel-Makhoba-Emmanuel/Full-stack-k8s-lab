@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	databases "full-stack-k8s-Lab/Databases"
 	"full-stack-k8s-Lab/routes"
 	"log"
 	"os"
@@ -10,6 +11,7 @@ import (
 )
 
 func main() {
+	databases.ConnectToPostgres() // Connect to the PostgreSQL database
 
 	//create a new router
 	router := gin.Default()
