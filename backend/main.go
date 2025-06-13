@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"full-stack-docker-prod/routes"
+	"full-stack-k8s-Lab/routes"
 	"log"
 	"os"
 

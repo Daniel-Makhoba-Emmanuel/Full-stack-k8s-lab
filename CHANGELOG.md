@@ -31,6 +31,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Changed
 - Updated architecture
+- Removed db password secret and replaced
 
   
 ### Fixed
