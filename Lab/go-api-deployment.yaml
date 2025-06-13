@@ -48,6 +48,9 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "300m" # Adjust as necessary for your application
+          envFrom:
+            - configMapRef:
+                name: go-api-config # Reference to the ConfigMap for environment variables
           env:
             - name: POSTGRES_USER
               valueFrom:

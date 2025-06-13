@@ -27,11 +27,14 @@ All notable changes and planned additions to this Lab will be documented in this
 - Added mysql stateful set
 - Added mysql headless service
 - Added mysql secret
+- Added go api credentials secrets to connect to cluster database
+- Added postgres.go file to handle database connection
 
 
 ### Changed
 - Updated architecture
 - Removed db password secret and replaced
+- Changed main.go to run database connection first
 
   
 ### Fixed
