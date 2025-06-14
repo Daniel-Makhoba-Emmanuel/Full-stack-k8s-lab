@@ -21,7 +21,20 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [12-06-2025] - Stateful Services
+## [14-06-2025] - Stateful Services
+
+### Added
+- Added Redis stateful set
+- Added Redis headless service
+
+
+### Changed
+- Updated architecture
+
+  
+### Fixed
+
+## [13-06-2025] - Stateful Services
 
 ### Added
 - Added mysql stateful set
