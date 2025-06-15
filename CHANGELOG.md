@@ -21,6 +21,17 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
+## [15-06-2025] - Updated Root ReadME
+
+### Added
+
+
+### Changed
+- Updated root readme to show current workloads
+
+  
+### Fixed
+
 ## [14-06-2025] - Stateful Services
 
 ### Added
