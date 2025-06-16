@@ -32,18 +32,17 @@ All notable changes and planned additions to this Lab will be documented in this
   
 ### Fixed
 
-## [16-06-2025] - Stateful Services
+## [16-06-2025] - Stateful Services (Not working, currently fixing configuration issue)
 
 ### Added
-- 
-
-
+- MongoDB statefulset
+- MongoDB headless-service
+- MongoDB credentials
+- MongoDB configMap
 
 ### Changed
 
-
-  
-### Fixed
+  ### Fixed
 - Fixed mismatch in credentials causing errors
 - Removed redundant init containercausing pod to fail
 
