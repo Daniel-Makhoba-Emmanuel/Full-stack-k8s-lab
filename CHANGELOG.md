@@ -35,6 +35,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [16-06-2025] - Stateful Services
 
 ### Added
+- 
 
 
 
@@ -43,6 +44,8 @@ All notable changes and planned additions to this Lab will be documented in this
 
   
 ### Fixed
+- Fixed mismatch in credentials causing errors
+- Removed redundant init containercausing pod to fail
 
 ## [14-06-2025] - Stateful Services
 
