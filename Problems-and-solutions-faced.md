@@ -40,3 +40,11 @@ I made an error with an init container in the pod. It was writing a txt file to 
 
 ### Solution
 I didn't realize that postgres runs an initDB on that path to check if it's empty. I fixed that by deleting the init container, but I was still getting the same error. I realized that the pvc (with the edited path) used was still available and the pod was connecting to it. I deleted the old pvc and re-ran the manifest, which successfully provisioned the pod.
+
+## 7. Staging Environment Pods connecting to wrong Database
+The pods in the staging environment were using the dev environments postgresql instance instead of their envionment's. This misconfiguration didn't lead to any problems, but was found when i was auiting the yaml files and noticed it.
+
+### Solution
+For the Go API pods to connect to the postgresql databases , the FQDN for the service has to be used. This FQDN `postgres-headless-service.dev.svc.cluster.local` was specified in the `go-api-credentials` yaml initially. The issue however was there are two environments. Meaning if this yaml was applied as well in the staging environment it would point to the dev environments POstgres instance, ignoring its own. 
+
+To fix this I seperated the go-api-credentials yaml into two `go-api-credentials-dev` and `go-api-credentials-staging`
