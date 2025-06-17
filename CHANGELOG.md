@@ -21,15 +21,17 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [16-06-2025] - Stateful Services (Not working, currently fixing configuration issue)
+## [17-06-2025] - GitHub and ISP downtime
 
 ### Added
+- Added dedicated credentials YAMl for staging environment
 
 ### Changed
 - Updated changelog
 
 
 ### Fixed
+- Staging environment API pods we're calling the dev environment postgresql instance
 
 
 ## [16-06-2025] - Stateful Services (Not working, currently fixing configuration issue)
