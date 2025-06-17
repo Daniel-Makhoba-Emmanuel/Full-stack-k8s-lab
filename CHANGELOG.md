@@ -21,16 +21,16 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [15-06-2025] - Updated Root ReadME
+## [16-06-2025] - Stateful Services (Not working, currently fixing configuration issue)
 
 ### Added
 
-
 ### Changed
-- Updated root readme to show current workloads
+- Updated changelog
 
-  
+
 ### Fixed
+
 
 ## [16-06-2025] - Stateful Services (Not working, currently fixing configuration issue)
 
@@ -45,6 +45,18 @@ All notable changes and planned additions to this Lab will be documented in this
   ### Fixed
 - Fixed mismatch in credentials causing errors
 - Removed redundant init containercausing pod to fail
+
+## [15-06-2025] - Updated Root ReadME
+
+### Added
+
+
+### Changed
+- Updated root readme to show current workloads
+
+  
+### Fixed
+
 
 ## [14-06-2025] - Stateful Services
 
