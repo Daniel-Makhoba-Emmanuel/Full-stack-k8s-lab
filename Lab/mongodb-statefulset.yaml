@@ -21,7 +21,7 @@ spec:
             matchLabels:
               app: mongodb-statefulset 
       terminationGracePeriodSeconds: 10 
-      initContainers: #
+      initContainers: 
         # This init container handles replica set initialization for the first pod (mongodb-statefulset-0)
         - name: init-mongodb-replica-set
           image: mongo:latest # Use a specific version guys
@@ -69,10 +69,7 @@ spec:
           ports:
             - containerPort: 27017
               name: mongodb 
-          command:
-            - mongod
-            - "--config"
-            - "/etc/mongod.conf" # Start mongod with the mounted config file
+          command: ["tail", "-f", "/dev/null"] # Keeps the container running
           resources: 
             requests:
               memory: "256Mi"
