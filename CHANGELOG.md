@@ -22,7 +22,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 
-## [17-06-2025] - GitHub and ISP downtime
+## [17-06-2025] - Staging Pods talking to Dev DB
 
 ### Added
 - Added dedicated credentials YAMl for staging environment
