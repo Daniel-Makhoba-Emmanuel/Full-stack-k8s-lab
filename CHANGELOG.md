@@ -8,6 +8,9 @@ All notable changes and planned additions to this Lab will be documented in this
 -   **Planning:** Implement HarshiCorp vault into Lab for secrets management.
 
 -   **Planning:** Add Kubetail and expose it in the observability namespace
+  
+-   **Planning:** Conduct performs test on pods
+
     
 
 ### Changed
@@ -15,8 +18,6 @@ All notable changes and planned additions to this Lab will be documented in this
 
 -   **Planning:** Change to sealed secrets for secret management
   
--   **Planning:** Perform audit on manifests to consolidate standard
-
 
 
 ### Fixed
@@ -25,6 +26,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Added
 - Added dedicated credentials YAMl for staging environment
+- Perform audit on manifests to consolidate standard
 
 ### Changed
 - Updated changelog
