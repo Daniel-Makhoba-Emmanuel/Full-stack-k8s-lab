@@ -20,7 +20,22 @@ All notable changes and planned additions to this Lab will be documented in this
   
 
 
+### Fix
+-   **Planning:** Fix MongoDB in cluster deployment issue
+
+
+
+## [18-06-2025] - Staging Pods talking to Dev DB
+
+### Added
+
+
+### Changed
+- Updated changelog
+
+
 ### Fixed
+
 
 ## [17-06-2025] - Staging Pods talking to Dev DB
 
