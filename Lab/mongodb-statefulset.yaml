@@ -4,7 +4,7 @@ metadata:
   name: mongodb-statefulset
 spec:
   serviceName: mongodb-headless-service
-  replicas: 2
+  replicas: 2 # Assuming you reduced replicas for debugging, adjust as needed
   selector:
     matchLabels:
       app: mongodb-statefulset
@@ -22,8 +22,18 @@ spec:
               app: mongodb-statefulset
       terminationGracePeriodSeconds: 10
       initContainers:
+        # --- NEW INIT CONTAINER FOR PERMISSIONS ---
+        - name: fix-data-permissions
+          image: busybox:latest # Light-weight image
+          command: ["sh", "-c", "chown -R 999:999 /data/db && chmod -R 755 /data/db"]
+          securityContext: # Run this initContainer as root to ensure it has permissions to change ownership
+            runAsUser: 0 # Run as root
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+        # --- END NEW INIT CONTAINER ---
         - name: init-mongodb-replica-set
-          image: mongo:6.0.13 # IMPORTANT: Use a specific, stable MongoDB image version for production
+          image: mongo:6.0.13
           command:
             - "bash"
             - "-c"
@@ -57,21 +67,26 @@ spec:
               subPath: mongod.conf
             - name: mongodb-data
               mountPath: /data/db
+      securityContext:
+        fsGroup: 999 # Keep this for consistency and to assist if the initContainer is ever skipped
       containers:
         - name: mongodb
-          image: mongo:6.0.13 # IMPORTANT: Use a specific, stable MongoDB image version for production
+          image: mongo:6.0.13
+          securityContext:
+            runAsUser: 999
+            runAsGroup: 999
           ports:
             - containerPort: 27017
               name: mongodb
-          args: ["--config", "/etc/mongod.conf"] # Pass config file as an argument to the entrypoint
+          command: ["mongod", "--config", "/etc/mongod.conf"] # Revert to normal mongod command
           resources:
             requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
+              memory: "1Gi" # Increased resource requests as discussed
               cpu: "500m"
-          livenessProbe:
+            limits:
+              memory: "2Gi" # Increased resource limits
+              cpu: "1000m"
+          livenessProbe: # Uncommented probes, as mongod should now start
             exec:
               command:
                 - mongosh
@@ -82,7 +97,7 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 6
             successThreshold: 1
-          readinessProbe:
+          readinessProbe: # Uncommented probes
             exec:
               command:
                 - mongosh
@@ -116,5 +131,5 @@ spec:
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: 1Gi
-        storageClassName: custom-local-storage-class # IMPORTANT: Replace with your actual StorageClass name
+            storage: 1Gi # Consider increasing this for real workloads
+        storageClassName: custom-local-storage-class
