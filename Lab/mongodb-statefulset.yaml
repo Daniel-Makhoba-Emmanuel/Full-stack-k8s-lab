@@ -1,126 +1,120 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodb-statefulset 
+  name: mongodb-statefulset
 spec:
-  serviceName: mongodb-headless-service 
-  replicas: 3
+  serviceName: mongodb-headless-service
+  replicas: 2
   selector:
     matchLabels:
-      app: mongodb-statefulset 
+      app: mongodb-statefulset
   template:
     metadata:
       labels:
-        app: mongodb-statefulset 
+        app: mongodb-statefulset
     spec:
       topologySpreadConstraints:
-        - maxSkew: 1  # Max allowed difference in the number of matching pods between nodes
-          topologyKey: kubernetes.io/hostname # Spread pods across different nodes (hostnames)
-          whenUnsatisfiable: DoNotSchedule # Do not schedule if the constraint cannot be satisfied
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
-              app: mongodb-statefulset 
-      terminationGracePeriodSeconds: 10 
-      initContainers: 
-        # This init container handles replica set initialization for the first pod (mongodb-statefulset-0)
+              app: mongodb-statefulset
+      terminationGracePeriodSeconds: 10
+      initContainers:
         - name: init-mongodb-replica-set
-          image: mongo:latest # Use a specific version guys
+          image: mongo:6.0.13 # IMPORTANT: Use a specific, stable MongoDB image version for production
           command:
             - "bash"
             - "-c"
             - |
-              # Only the first pod (ordinal 0) initiates the replica set
               if [[ "$(hostname)" == "mongodb-statefulset-0" ]]; then
                 echo "Initiating replica set..."
-                # Give time for other pods to potentially start and be discoverable via DNS
                 sleep 20
-                # Construct the replica set members array using the correct headless service name
                 MEMBERS="[{_id: 0, host: \"mongodb-statefulset-0.mongodb-headless-service:27017\"},{_id: 1, host: \"mongodb-statefulset-1.mongodb-headless-service:27017\"},{_id: 2, host: \"mongodb-statefulset-2.mongodb-headless-service:27017\"}]"
                 echo "Replica set members: $MEMBERS"
-                # Execute rs.initiate. Note: For a production setup, more robust initiation
-                # logic might be needed, possibly an Operator.
                 mongosh --eval "rs.initiate({ _id: \"rs0\", members: $MEMBERS });"
                 echo "Replica set initiated."
               else
                 echo "Not the primary pod (mongodb-statefulset-0), skipping replica set initiation."
               fi
-          env: 
+          env:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-credentials 
-                  key: MONGO_INITDB_ROOT_USERNAME 
+                  name: mongodb-credentials
+                  key: MONGO_INITDB_ROOT_USERNAME
             - name: MONGO_INITDB_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mongodb-credentials 
-                  key: MONGO_INITDB_ROOT_PASSWORD 
+                  name: mongodb-credentials
+                  key: MONGO_INITDB_ROOT_PASSWORD
           volumeMounts:
             - name: mongodb-keyfile
-              mountPath: /etc/mongodb-keyfile # Keyfile mounted for internal authentication
+              mountPath: /etc/mongodb-keyfile
             - name: mongodb-config
-              mountPath: /etc/mongod.conf # MongoDB configuration file
-              subPath: mongod.conf # Mounts only the 'mongod.conf' file from the ConfigMap
-            - name: mongodb-data # Data volume for MongoDB's dbPath
-              mountPath: /data/db # Default data directory for MongoDB
+              mountPath: /etc/mongod.conf
+              subPath: mongod.conf
+            - name: mongodb-data
+              mountPath: /data/db
       containers:
         - name: mongodb
-          image: mongo:latest 
+          image: mongo:6.0.13 # IMPORTANT: Use a specific, stable MongoDB image version for production
           ports:
             - containerPort: 27017
-              name: mongodb 
-          command: ["tail", "-f", "/dev/null"] # Keeps the container running
-          resources: 
+              name: mongodb
+          args: ["--config", "/etc/mongod.conf"] # Pass config file as an argument to the entrypoint
+          resources:
             requests:
               memory: "256Mi"
               cpu: "250m"
             limits:
               memory: "512Mi"
               cpu: "500m"
-          livenessProbe: # Checks if the MongoDB process is running and responsive
+          livenessProbe:
             exec:
               command:
                 - mongosh
                 - --eval
-                - "db.adminCommand('ping').ok" # Simple ping to check if server is up
+                - "db.adminCommand('ping').ok"
             initialDelaySeconds: 30
-            periodSeconds: 10 
-            timeoutSeconds: 5 
-            failureThreshold: 6 
-            successThreshold: 1 
-          readinessProbe: 
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
+          readinessProbe:
             exec:
               command:
                 - mongosh
                 - --eval
-                - "db.adminCommand('replSetGetStatus').ok || db.adminCommand('ping').ok" # Check replica set status or ping
-            initialDelaySeconds: 10 
-            periodSeconds: 10 
-            timeoutSeconds: 5 
-            failureThreshold: 6 
-            successThreshold: 1 
-          volumeMounts: # Volumes mounted into the main MongoDB container
+                - "db.adminCommand('replSetGetStatus').ok || db.adminCommand('ping').ok"
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
+            successThreshold: 1
+          volumeMounts:
             - name: mongodb-data
-              mountPath: /data/db # Persistent data directory
+              mountPath: /data/db
             - name: mongodb-config
               mountPath: /etc/mongod.conf
-              subPath: mongod.conf # MongoDB configuration
+              subPath: mongod.conf
             - name: mongodb-keyfile
-              mountPath: /etc/mongodb-keyfile # MongoDB keyfile for internal authentication
-      volumes: 
+              mountPath: /etc/mongodb-keyfile
+      volumes:
         - name: mongodb-config
           configMap:
-            name: mongodb-config 
+            name: mongodb-config
         - name: mongodb-keyfile
           secret:
-            secretName: mongodb-keyfile 
-            defaultMode: 0400 # Set permissions for the keyfile (read-only for owner)
-  volumeClaimTemplates: 
+            secretName: mongodb-keyfile
+            defaultMode: 0400
+  volumeClaimTemplates:
     - metadata:
-        name: mongodb-data 
+        name: mongodb-data
       spec:
-        accessModes: ["ReadWriteOnce"] 
+        accessModes: ["ReadWriteOnce"]
         resources:
           requests:
-            storage: 1Gi 
-        storageClassName: custom-local-storage-class # Replace with your actual StorageClass name (e.g., "standard", "gp2")
+            storage: 1Gi
+        storageClassName: custom-local-storage-class # IMPORTANT: Replace with your actual StorageClass name
