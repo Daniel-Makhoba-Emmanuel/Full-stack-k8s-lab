@@ -25,17 +25,18 @@ All notable changes and planned additions to this Lab will be documented in this
 
 
 
-## [18-06-2025] - Staging Pods talking to Dev DB
+## [18-06-2025] - Node-Exporter
 
 ### Added
-
+- Added node-exporter daemonset to observability namespace
 
 ### Changed
 - Updated changelog
+- Updated architecture diageam
 
 
 ### Fixed
-
+- Narrowed down issue to permission and network(my ISP downtime), still fixing
 
 ## [17-06-2025] - Staging Pods talking to Dev DB
 
