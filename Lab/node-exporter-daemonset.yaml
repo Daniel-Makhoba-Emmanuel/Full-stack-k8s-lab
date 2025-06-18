@@ -66,5 +66,5 @@ spec:
         - key: "node-role.kubernetes.io/control-plane"
           effect: NoSchedule # Allows scheduling on control plane nodes if needed
         - key: CriticalAddonsOnly
-          operator: Exists # Ensures the DaemonSet is scheduled on all nodes
+          operator: Exists # Ensures the DaemonSet is scheduled on all nodes(even in aks,gks,eks) where critical addons are allowed
     
