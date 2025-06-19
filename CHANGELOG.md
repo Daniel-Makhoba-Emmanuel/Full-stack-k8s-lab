@@ -12,17 +12,16 @@ All notable changes and planned additions to this Lab will be documented in this
 -   **Planning:** Migrate to GitOps friendly repo structure
    
 
-    
-
 ### Changed
 -   **Planning:** Migrate to `new-repo-branch` structure for Lab.
 
 -   **Planning:** Change to sealed secrets for secret management
   
 
-
 ### Fix
 -   **Planning:** Fix MongoDB in cluster deployment issue
+
+
 
 ## [19-06-2025] - Fixed Crashing Pods 
 
@@ -40,6 +39,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Fixed
 - Network Downtime somehow caused CoreDNS to be unable to reach the APIserver
 
+
 ## [18-06-2025] - Node-Exporter
 
 ### Added
@@ -52,6 +52,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fixed
 - Narrowed down issue to permission and network(my ISP downtime), still fixing
+
 
 ## [17-06-2025] - Staging Pods talking to Dev DB
 
@@ -81,6 +82,7 @@ All notable changes and planned additions to this Lab will be documented in this
 - Fixed mismatch in credentials causing errors
 - Removed redundant init containercausing pod to fail
 
+
 ## [15-06-2025] - Updated Root ReadME
 
 ### Added
@@ -105,6 +107,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
   
 ### Fixed
+
 
 ## [13-06-2025] - Stateful Services
 
@@ -168,6 +171,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Fixed
 -  Fixed pods taking too long to terminate by adding termination grace periods
 
+
 ## [07-06-2025] - Kube-daiagrams 
 
 ### Added
@@ -185,6 +189,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Removed
 -  Hostpath manifests
+
 
 ## [02-06-2025] - Kubetail and nginx
 
