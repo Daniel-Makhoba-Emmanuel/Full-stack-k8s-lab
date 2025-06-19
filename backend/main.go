@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	databases.ConnectToPostgres() // Connect to the PostgreSQL database
 
 	//create a new router
 	router := gin.Default()
@@ -18,8 +19,6 @@ func main() {
 	routes.HelloRoute(router)
 	routes.HealthRoute(router)
 	routes.ReadyRoute(router)
-
-	databases.ConnectToPostgres() // Connect to the PostgreSQL database
 
 	dbHost := os.Getenv("DB_HOST")
 	apiPort := os.Getenv("API_PORT")
