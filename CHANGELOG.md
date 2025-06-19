@@ -23,7 +23,16 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Fix
 -   **Planning:** Fix MongoDB in cluster deployment issue
 
+## [19-06-2025] - Fixed Crashing Pods 
 
+### Added
+
+### Changed
+- Updated changelog
+
+
+### Fixed
+- Network Downtime somehow caused CoreDNS to be unable to reach the APIserver
 
 ## [18-06-2025] - Node-Exporter
 
@@ -32,7 +41,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Changed
 - Updated changelog
-- Updated architecture diageam
+- Updated architecture diagram
 
 
 ### Fixed
