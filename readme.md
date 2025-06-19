@@ -1,7 +1,23 @@
 # Full Stack K8S Lab 
 
-![kubernetes architecture](resources/Architecture.png)
+### Dev Namespace
+![alt text](resources/dev-diagram.png)
 (Open image in new tab for a clearer view)
+
+
+### Staging Namespace
+![alt text](resources/staging-diagram.png)
+(Open image in new tab for a clearer view)
+
+
+### Observability Namespace
+![alt text](resources/observability-diagram.png)
+(Open image in new tab for a clearer view)
+
+### Ingress-nginx Namespace
+![alt text](resources/ingress-nginx-diagram.png)
+(Open image in new tab for a clearer view)
+
 
 ## Where to start?
 If you're looking to understand the structure and maintenance of this lab, your first stop should be the `Lab` directory. It contains all the manifests for the lab.
