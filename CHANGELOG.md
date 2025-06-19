@@ -6,10 +6,11 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Added
 -   **Planning:** Implement HarshiCorp vault into Lab for secrets management.
-
--   **Planning:** Add Kubetail and expose it in the observability namespace
   
 -   **Planning:** Conduct performs test on pods
+
+-   **Planning:** Migrate to GitOps friendly repo structure
+   
 
     
 
@@ -27,9 +28,13 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Added
 - Updated `problems-and-solutions-faced.md`
+- Added ingress-controller using helm
+- Added ingress namespace
+- Add Kubetail and expose it in the observability namespace
 
 ### Changed
 - Updated changelog
+- Split and update Architecture diagrams
 
 
 ### Fixed
