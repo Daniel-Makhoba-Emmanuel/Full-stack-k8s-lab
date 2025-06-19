@@ -26,6 +26,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [19-06-2025] - Fixed Crashing Pods 
 
 ### Added
+- Updated `problems-and-solutions-faced.md`
 
 ### Changed
 - Updated changelog

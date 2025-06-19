@@ -48,3 +48,16 @@ The pods in the staging environment were using the dev environments postgresql i
 For the Go API pods to connect to the postgresql databases , the FQDN for the service has to be used. This FQDN `postgres-headless-service.dev.svc.cluster.local` was specified in the `go-api-credentials` yaml initially. The issue however was there are two environments. Meaning if this yaml was applied as well in the staging environment it would point to the dev environments POstgres instance, ignoring its own. 
 
 To fix this I seperated the go-api-credentials yaml into two `go-api-credentials-dev` and `go-api-credentials-staging`
+
+## 8. CoreDNS Caused a Cluster-wide Failure
+The Go API Pods across the cluster were stuck in a CrashBackLoop cycle. While some might occasionally connect briefly, the majority consistently failed to establish a database connection. At the same time my ISP eas experiencing a major downtime in my region.
+
+### Solution
+My initial troubleshooting involved deleting the Go API deployment and re-deploying it using a different ISP. This, however, led to the same issue, ruling out the external network as the sole cause. The Go API pod logs, while initially confusing, consistently showed a `failed to connect to postgres-headless-service.dev.svc.cluster.local` error, specifically indicating a problem resolving the database service's IP address. This was strange, since the PostgreSQL database pod and its headless service were working fine.
+
+I decided to test the connectivity from within the cluster using a busybox pod. Running `nc -vz postgres-headless-service.dev.svc.cluster.local 5432` from the busybox pod. This returned a "bad address" error. This confirmed that DNS resolution for the database service was failing from inside the cluster, indicating CoreDNS as the potential issue.
+
+After inspecting the CoreDNS pods in the kube-system namespace, they initially appeared Running. However, diving deeper into their logs revealed critical errors: CoreDNS was repeatedly failing to connect to the Kubernetes API server (the kubernetes service at 10.96.0.1:443) with "dial tcp i/o timeout" messages. This meant CoreDNS was "blind" to the cluster's services and endpoints, hence unable to resolve service names.
+
+
+This pointed to a fundamental, cluster-wide network breakdown, likely stemming from a corrupted state in Kind's underlying Docker network bridge hightened by the recent external network issues. Given the severity of the problem, a full cluster reset was done. After a clean recreation of the Kind cluster and redeploying my applications, all core components became stable, and the Go API pods successfully connected to the PostgreSQL database
