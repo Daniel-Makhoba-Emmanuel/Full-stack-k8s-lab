@@ -3,5 +3,8 @@ kind: Cluster
 name: k8s-lab-cluster
 nodes:
   - role: control-plane
+    image: kindest/node:v1.32.1 
   - role: worker
+    image: kindest/node:v1.32.1 
   - role: worker
+    image: kindest/node:v1.32.1 
