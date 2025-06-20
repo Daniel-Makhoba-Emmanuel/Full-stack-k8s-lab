@@ -22,6 +22,17 @@ All notable changes and planned additions to this Lab will be documented in this
 -   **Planning:** Fix MongoDB in cluster deployment issue
 
 
+## [20-06-2025] - Ingress 
+
+### Added
+- Updated workloads in root `readme.md` 
+
+### Changed
+- Updated changelog
+
+
+### Fixed
+
 
 ## [19-06-2025] - Fixed Crashing Pods 
 

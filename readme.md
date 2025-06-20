@@ -32,3 +32,4 @@ These are the workloads that are currently in the Lab. For more information abou
 - Postgres db (k8s hosted)
 - Mysql db (k8s hosted)
 - Redis (k8s hosted)
+- Ingress
