@@ -21,6 +21,16 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Fix
 -   **Planning:** Fix MongoDB in cluster deployment issue
 
+## [25-06-2025] - Exposing Go API pods with ingress
+
+### Added
+
+### Changed
+- Updated changelog
+
+
+### Fixed
+
 
 ## [20-06-2025] - Ingress 
 
