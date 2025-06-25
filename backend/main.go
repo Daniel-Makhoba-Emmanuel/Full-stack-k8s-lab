@@ -16,7 +16,7 @@ func main() {
 	//create a new router
 	router := gin.Default()
 
-	routes.HelloRoute(router)
+	routes.ApiRoute(router)
 	routes.HealthRoute(router)
 	routes.ReadyRoute(router)
 
