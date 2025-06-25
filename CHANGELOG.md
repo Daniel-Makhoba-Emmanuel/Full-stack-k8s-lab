@@ -24,6 +24,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [25-06-2025] - Exposing Go API pods with ingress
 
 ### Added
+- Added ingress resource for go pods(host based routing)
 
 ### Changed
 - Updated changelog
