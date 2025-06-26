@@ -20,17 +20,34 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fix
 -   **Planning:** Fix MongoDB in cluster deployment issue
+  
+
+## [26-06-2025] - Exposing Go API pods with ingress
+
+### Added
+- Added ingress resource for go pods(path based routing)
+- Added seperate pipeline for hello backend
+
+### Changed
+- Updated changelog
+- Update hello backend and Go Api buid pipeline to filter changes in code related to the service
+
+
+### Fixed
+- Fixed failed pipeline due to expired credentials
 
 ## [25-06-2025] - Exposing Go API pods with ingress
 
 ### Added
 - Added ingress resource for go pods(host based routing)
+- Added second service `hello-backend`
 
 ### Changed
 - Updated changelog
 
 
 ### Fixed
+- Fixed failed pipeline due to expired credentials
 
 
 ## [20-06-2025] - Ingress 

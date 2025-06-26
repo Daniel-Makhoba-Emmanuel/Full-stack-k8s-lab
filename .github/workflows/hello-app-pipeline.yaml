@@ -31,16 +31,16 @@ jobs:
       - name: Build Hello App Docker image (no push yet)
         uses: docker/build-push-action@v6
         with:
-          context: . # Adjust context if your hello app code is in a subdirectory
-          file: ./Dockerfile.hello # Adjust path to your hello app's Dockerfile
-          tags: Portfolio_hello_app:latest
+          context: . 
+          file: ./Dockerfile.hello 
+          tags: Portfolio_hello_backend:latest
           outputs: type=docker
           push: false
 
       - name: Scan Hello App Image with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: portfolio_hello_app:latest
+          image-ref: portfolio_hello_backend:latest
           format: 'table'
           severity: 'HIGH,CRITICAL'
           exit-code: '1'
@@ -49,9 +49,9 @@ jobs:
       - name: Push Hello App Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./hello-app # Adjust context
-          file: ./hello-app/Dockerfile # Adjust path
+          context: .
+          file: ./Dockerfile.hello 
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio_hello_app:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio_hello_app:${{ github.run_number }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio_hello_backend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/portfolio_hello_backend:${{ github.run_number }}
           push: true
