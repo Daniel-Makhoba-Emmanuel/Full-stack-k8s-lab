@@ -32,7 +32,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Changed
 - Updated changelog
 - Update hello backend and Go Api buid pipeline to filter changes in code related to the service
-- Removed second evnironment until i'm ready to implement gitops
+- Removed second environment until i'm ready to implement gitops
 
 
 ### Fixed
