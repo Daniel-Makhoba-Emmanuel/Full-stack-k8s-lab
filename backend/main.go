@@ -28,7 +28,7 @@ func main() {
 
 	port := os.Getenv("API_PORT")
 	if port == "" {
-		port = "8080" // Default port if not specified
+		port = "8080" //  Default port if not specified
 	}
 
 	listenAddr := ":" + port
