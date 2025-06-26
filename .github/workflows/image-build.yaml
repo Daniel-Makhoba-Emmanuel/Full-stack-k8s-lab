@@ -1,9 +1,12 @@
-name: Image Build,Scan and Push(production)
+name: Go Api Image Build,Scan and Push(production)
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**' 
+      - 'Dockerfile.api' 
   workflow_dispatch: 
 
 jobs:
