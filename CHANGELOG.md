@@ -27,6 +27,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ### Added
 - Added ingress resource for go pods(path based routing)
 - Added seperate pipeline for hello backend
+- Added hello backend manifests
 
 ### Changed
 - Updated changelog
@@ -34,7 +35,7 @@ All notable changes and planned additions to this Lab will be documented in this
 
 
 ### Fixed
-- Fixed failed pipeline due to expired credentials
+- Fixed pipeline running when code related to services where not affected
 
 ## [25-06-2025] - Exposing Go API pods with ingress
 
