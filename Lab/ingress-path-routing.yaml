@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: path-routing-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: dev.k8slab.com
+      http:
+        paths:
+        - path: /api
+          pathType: Prefix
+          backend:
+            service:
+              name: go-api-service
+              port:
+                number: 80
+        - path: /hello
+          pathType: Prefix
+          backend:
+            service:
+              name: hello-backend-service
+              port:
+                number: 80
