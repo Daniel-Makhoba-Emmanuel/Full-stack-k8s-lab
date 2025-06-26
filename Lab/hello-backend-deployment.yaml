@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-backend-deployment
+  labels:
+    app: hello-backend
+  annotations:
+    kubernetes.io/change-cause: "Replicas changed to 3 for scaling"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-backend
+  template:
+    metadata:
+      labels:
+        app: hello-backend
+    spec:
+      terminationGracePeriodSeconds: 60 # Grace period for pod termination
+      containers:
+        - name: hello-backend-container
+          image: iamdanielemmanuel22643/portfolio_hello_backend:latest 
+          ports:
+            - name: http-api
+              containerPort: 8080 # Port your Go API listens on
+          livenessProbe:
+            httpGet:  
+              path: /health
+              port: http-api
+              scheme: HTTP    # Use HTTP or HTTPS based on your API
+            initialDelaySeconds: 30 # Delay before the first probe
+            periodSeconds: 10 # Interval between probes
+            timeoutSeconds: 5 # Timeout for each probe
+            failureThreshold: 3 # Number of failures before marking the container as unhealthy
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-api
+              scheme: HTTP    
+            initialDelaySeconds: 5 
+            periodSeconds: 5 
+            timeoutSeconds: 3 # Timeout for each probe
+            failureThreshold: 2 # Number of failures before marking the container as not ready
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "300m" # Adjust as necessary for your application
+          envFrom:
+            - configMapRef:
+                name: hello-backend-config # Reference to the ConfigMap for environment variables
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: hello-backend-credentials
+                  key: POSTGRES_USER
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: hello-backend-credentials
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: hello-backend-credentials
+                  key: POSTGRES_PORT
+            - name: POSTGRES_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: hello-backend-credentials
+                  key: POSTGRES_NAME
+            - name: POSTGRES_SSL
+              valueFrom:
+                secretKeyRef:
+                  name: hello-backend-credentials
+                  key: POSTGRES_SSL
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-password
+                  key: POSTGRES_PASSWORD
