@@ -61,3 +61,9 @@ After inspecting the CoreDNS pods in the kube-system namespace, they initially a
 
 
 This pointed to a fundamental, cluster-wide network breakdown, likely stemming from a corrupted state in Kind's underlying Docker network bridge hightened by the recent external network issues. Given the severity of the problem, a full cluster reset was done. After a clean recreation of the Kind cluster and redeploying my applications, all core components became stable, and the Go API pods successfully connected to the PostgreSQL database
+
+## 9. Pipeline keeps building on every commit (the irony!)
+Everytime I made a commit regardless of if it affected the the dockerfiles or backend code, or not the pipeline would run.
+
+## Solution
+This was due to my faulty design of the pipeline. I fixed the pipeline to only run when the code involving the deployed services were changed
