@@ -4,6 +4,11 @@ metadata:
   name: path-routing-ingress
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - dev.k8slab.com
+    secretName: dev-k8slab-tls-secret 
+
   rules:
     - host: dev.k8slab.com
       http:
