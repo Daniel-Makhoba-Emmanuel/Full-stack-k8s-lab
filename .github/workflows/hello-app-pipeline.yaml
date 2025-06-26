@@ -33,7 +33,7 @@ jobs:
         with:
           context: . 
           file: ./Dockerfile.hello 
-          tags: Portfolio_hello_backend:latest
+          tags: portfolio_hello_backend:latest
           outputs: type=docker
           push: false
 
