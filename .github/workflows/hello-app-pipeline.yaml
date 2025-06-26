@@ -1,5 +1,5 @@
 # .github/workflows/hello-app-pipeline.yaml
-name: Hello App Image Build, Scan, and Push (production)
+name: Hello Backend Image Build, Scan, and Push (production)
 
 on:
   push:
