@@ -28,11 +28,13 @@ All notable changes and planned additions to this Lab will be documented in this
 - Added ingress resource for go pods(path based routing)
 - Added seperate pipeline for hello backend
 - Added hello backend manifests
+- Added self signed tls certificate and key
 
 ### Changed
 - Updated changelog
 - Update hello backend and Go Api buid pipeline to filter changes in code related to the service
 - Removed second environment until i'm ready to implement charts
+- Added tls to path based ingress yaml
 
 
 ### Fixed
