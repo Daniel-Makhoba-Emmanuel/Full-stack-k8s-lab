@@ -25,6 +25,7 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [10-07-2025] - Back after academic break (now a graduate!!)
 
 ### Added
+- Migrated Documentation to github pages
 
 ### Changed
 
