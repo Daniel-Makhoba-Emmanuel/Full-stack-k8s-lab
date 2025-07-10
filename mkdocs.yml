@@ -1,0 +1,16 @@
+site_name: Daniel's Kuberenetes Lab Docs
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - User Guide:
+    - Getting Started: user-guide/getting-started.md
+  - Projects:
+    - Deploying a StatefulSet (Basic Nginx): Projects/Deploying a StatefulSet (Basic Nginx).md
+    - Deploying a StatefulSet (postgres): Projects/Deploying a StatefulSet (postgres).md
+
+theme:
+  name: material
+
+plugins:
+  - search
