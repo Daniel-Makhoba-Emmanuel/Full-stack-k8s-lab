@@ -20,6 +20,15 @@ All notable changes and planned additions to this Lab will be documented in this
 
 ### Fix
 -   **Planning:** Fix MongoDB in cluster deployment issue
+-   
+
+## [10-07-2025] - Back after academic break (now a graduate!!)
+
+### Added
+
+### Changed
+
+### Fixed
   
 
 ## [26-06-2025] - Exposing Go API pods with ingress
