@@ -1,0 +1,1 @@
+# Deploying a StatefulSet (postgres)
