@@ -1,1 +1,1 @@
-# Deploying a StatefulSet (Basic Nginx)
+# Deploying a StatefulSet (Basic Nginx).
