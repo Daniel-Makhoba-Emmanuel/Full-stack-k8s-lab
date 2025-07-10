@@ -1,0 +1,10 @@
+site_name: My Project Docs
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - User Guide:
+    - Getting Started: user-guide/getting-started.md
+
+theme:
+  name: material
