@@ -5,22 +5,32 @@ All notable changes and planned additions to this Lab will be documented in this
 ## [Unreleased]
 
 ### Added
--   **Planning:** Implement HarshiCorp vault into Lab for secrets management.
-  
--   **Planning:** Conduct performs test on pods
-
--   **Planning:** Migrate to GitOps friendly repo structure
+-   **Planning:** 
+    -   Implement HarshiCorp vault into Lab for secrets management.
+    -  Conduct performs test on pods
+    -   Migrate to GitOps friendly repo structure
    
 
 ### Changed
--   **Planning:** Migrate to `new-repo-branch` structure for Lab.
+-   **Planning:**
+    - Migrate to `new-repo-branch` structure for Lab.
 
--   **Planning:** Change to sealed secrets for secret management
+    - Change to sealed secrets for secret management
   
 
 ### Fix
--   **Planning:** Fix MongoDB in cluster deployment issue
--   
+-   **Planning:** 
+    -   Fix MongoDB in cluster deployment issue
+
+## [10-07-2025] - Traefik Ingress
+
+### Added
+
+### Changed
+- Migrated resources and markdown files to documentation site
+- Updated README.md
+
+### Fixed
 
 ## [10-07-2025] - Back after academic break (now a graduate!!)
 

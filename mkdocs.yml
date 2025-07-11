@@ -2,9 +2,12 @@ site_name: Daniel's Kuberenetes Lab Docs
 
 nav:
   - Home: index.md
-  - Installation: installation.md
-  - User Guide:
-    - Getting Started: user-guide/getting-started.md
+  - Lab Setup:
+    - Architecture: lab-setup/architecture.md
+    - Getting Started: lab-setup/getting-started.md
+  - ChangeLog: CHANGELOG.md
+  - Problems and Solutions Faced: Problems-and-solutions-faced.md
+  - Tools: openSource_tools_used.md
   - Projects:
     - Deploying a StatefulSet (Basic Nginx): Projects/Deploying a StatefulSet (Basic Nginx).md
     - Deploying a StatefulSet (postgres): Projects/Deploying a StatefulSet (postgres).md

@@ -1,17 +1,8 @@
-# Welcome to MkDocs
+# Welcome to My Kubernetes Production Lab
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Hello!, I'm Daniel Makhoba Emmanuel, a Kubernetes Engineer with years of experience in Technology and a track record in Fullstack Engineering, DevOps and Cloud Native. 
 
-## Commands
+I made this lab to not only upskill my kubernetes skills, but also document the process. In this Lab i experiment qqith different Opensource tools, AI, cloud-providers, essentially any technology I find and feel "Hey this would be pretty nice to test out", and if it works I add it to my toolset.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+So enjoy the docs!!
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.

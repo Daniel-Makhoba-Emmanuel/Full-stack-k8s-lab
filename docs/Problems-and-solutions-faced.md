@@ -1,5 +1,3 @@
-Welcome!, This readme was made for to track the problems I faced in the Lab. The lab is being made to resemble a production setup as closely as possible, but they're still things it falls short on. Hence, some of these problems will be induced to mimic events in prod setups.
-
 ## 1. Workload in Control Plane
 The lab uses KIND(Kubernetes in Docker) to deploy k8s, and by default in a standard enviroment (contol plane and worker nodes), a taint is applied on the control plane to prevent workloads without the required tolerance from being deployed there (in cloud setups it's the same). However, since i only had one node and that was the control-plane this taint wasn't applied and workloads were being deployed into it.
 
@@ -26,7 +24,7 @@ As the Lab grows, the number of elements (Clusters, namespaces, replicasets, pod
 ### Solution
 I found a tool called KubeDiagrams which solves this by using the manifests,helm, and kubectl to determine the state of the environment. KubeDiagrams can also be integrated into CI/CD pipelines and is suitable
 
-![alt text](resources/Architecture.png)
+![alt text](resources/dev-diagram.png)
 
 ## 5. Termination Period taking too long
 One of my pods was taking too long to terminate, although it eventually did, the possibility that it wouldn't always terminate on-time still existed
