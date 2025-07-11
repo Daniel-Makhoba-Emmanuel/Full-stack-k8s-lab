@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../../installation/">
+        <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../Projects/Deploying%20a%20StatefulSet%20%28Basic%20Nginx%29/">
+        <link rel="next" href="../getting-started/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Getting Started - Daniel's Kuberenetes Lab Docs</title>
+        <title>Architecture - Daniel's Kuberenetes Lab Docs</title>
       
     
     
@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#architectures" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -93,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Getting Started
+              Architecture
             
           </span>
         </div>
@@ -208,28 +213,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Installation
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -243,15 +226,15 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    User Guide
+    Lab Setup
     
   </span>
   
@@ -259,10 +242,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            User Guide
+            Lab Setup
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -279,8 +262,93 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developmentdev-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development(Dev) Namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingressnginx-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress(Nginx) Namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability Namespace
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   
@@ -291,7 +359,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -300,6 +367,72 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ChangeLog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Problems-and-solutions-faced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Problems and Solutions Faced
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../openSource_tools_used.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -319,10 +452,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -335,8 +468,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Projects
           </label>
@@ -412,6 +545,43 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#developmentdev-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Development(Dev) Namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ingressnginx-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress(Nginx) Namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observability-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Observability Namespace
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -427,9 +597,14 @@
 
 
 
-  <h1>Getting Started</h1>
-
-
+<h1 id="architectures">Architectures</h1>
+<p>My architecture diagrams are automated using an opensource tool called kube-Diagrams. Kube-Diagrams allows to really specify what i want in the diagram and generates it. You can checkout their official repo on GitHub.</p>
+<h2 id="developmentdev-namespace">Development(Dev) Namespace</h2>
+<p><img alt="alt text" src="../image.png" /></p>
+<h2 id="ingressnginx-namespace">Ingress(Nginx) Namespace</h2>
+<p><img alt="alt text" src="../image-1.png" /></p>
+<h2 id="observability-namespace">Observability Namespace</h2>
+<p><img alt="alt text" src="../image-2.png" /></p>
 
 
 

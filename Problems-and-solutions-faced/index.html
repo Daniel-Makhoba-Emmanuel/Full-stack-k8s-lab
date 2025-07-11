@@ -1,0 +1,1057 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../CHANGELOG/">
+      
+      
+        <link rel="next" href="../Projects/Deploying%20a%20StatefulSet%20%28Basic%20Nginx%29/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Problems and Solutions Faced - Daniel's Kuberenetes Lab Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-workload-in-control-plane" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Daniel&#39;s Kuberenetes Lab Docs" class="md-header__button md-logo" aria-label="Daniel's Kuberenetes Lab Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Daniel's Kuberenetes Lab Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Problems and Solutions Faced
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Daniel&#39;s Kuberenetes Lab Docs" class="md-nav__button md-logo" aria-label="Daniel's Kuberenetes Lab Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Daniel's Kuberenetes Lab Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab Setup
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Lab Setup
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-setup/architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-setup/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ChangeLog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Problems and Solutions Faced
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Problems and Solutions Faced
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-workload-in-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Workload in Control Plane
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Workload in Control Plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-too-many-logs-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Too many Logs to monitor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Too many Logs to monitor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nginx-path-hit-and-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Nginx path hit and miss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nginx path hit and miss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-maintaining-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Maintaining architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Maintaining architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-termination-period-taking-too-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Termination Period taking too long
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Termination Period taking too long">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-stateful-postgres-error-residual-data-from-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Stateful Postgres Error - Residual data from PVC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Stateful Postgres Error - Residual data from PVC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-staging-environment-pods-connecting-to-wrong-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Staging Environment Pods connecting to wrong Database
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Staging Environment Pods connecting to wrong Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-coredns-caused-a-cluster-wide-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. CoreDNS Caused a Cluster-wide Failure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. CoreDNS Caused a Cluster-wide Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-pipeline-keeps-building-on-every-commit-the-irony" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Pipeline keeps building on every commit (the irony!)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openSource_tools_used.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Projects
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/Deploying%20a%20StatefulSet%20%28Basic%20Nginx%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying a StatefulSet (Basic Nginx)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Projects/Deploying%20a%20StatefulSet%20%28postgres%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploying a StatefulSet (postgres)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-workload-in-control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Workload in Control Plane
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Workload in Control Plane">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-too-many-logs-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Too many Logs to monitor
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Too many Logs to monitor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nginx-path-hit-and-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Nginx path hit and miss
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nginx path hit and miss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-maintaining-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Maintaining architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Maintaining architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-termination-period-taking-too-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Termination Period taking too long
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Termination Period taking too long">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-stateful-postgres-error-residual-data-from-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Stateful Postgres Error - Residual data from PVC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Stateful Postgres Error - Residual data from PVC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-staging-environment-pods-connecting-to-wrong-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Staging Environment Pods connecting to wrong Database
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Staging Environment Pods connecting to wrong Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-coredns-caused-a-cluster-wide-failure" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. CoreDNS Caused a Cluster-wide Failure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. CoreDNS Caused a Cluster-wide Failure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-pipeline-keeps-building-on-every-commit-the-irony" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Pipeline keeps building on every commit (the irony!)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      Solution
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Problems and Solutions Faced</h1>
+
+<h2 id="1-workload-in-control-plane">1. Workload in Control Plane</h2>
+<p>The lab uses KIND(Kubernetes in Docker) to deploy k8s, and by default in a standard enviroment (contol plane and worker nodes), a taint is applied on the control plane to prevent workloads without the required tolerance from being deployed there (in cloud setups it's the same). However, since i only had one node and that was the control-plane this taint wasn't applied and workloads were being deployed into it.</p>
+<h3 id="solution">Solution</h3>
+<p>To solve this I made a config.yaml with a control plane and worker nodes. The old plane was deleted and this config.yaml deployed. The taint for the control-plane was then able to take effect and all workloads were deployed to the worker nodes.</p>
+<h2 id="2-too-many-logs-to-monitor">2. Too many Logs to monitor</h2>
+<p>As the pod count kept on increasing, so had the difficulty when monitoring the logs in real time.</p>
+<h3 id="solution_1">Solution</h3>
+<p>I found a tool called kubetail that allows uses a web dashboard to to display all the logs in my cluster in real-time. I can filter logs by time, pod, namespace and node. And i can also switch between local and remote clusters making it ideal for porduction. I gave a breakdown on this here https://x.com/DanielMakhoba_E/status/1929112097272557761</p>
+<h2 id="3-nginx-path-hit-and-miss">3. Nginx path hit and miss</h2>
+<p>When experimenting with sidecar containers (web server(nginx) + logger) and a seperate nginx-deployment. The the sidecar contianer port had a different path "/app.log" and the deployments path had a "/" and "/custom" path. When performing curls to the service, it would sometime show the result and, sometimes a forbidden or not found error.</p>
+<p><img alt="alt text" src="../resources/problem-3-image.png" /></p>
+<h3 id="solution_2">Solution</h3>
+<p>This highlighted how the service object works. It is not aware of which pods have a particular path rather it merely checks if they'ready and sends traffic , which can result in a miss or a hit. To solve i would use an ingress controller to enable path absed routing</p>
+<h2 id="4-maintaining-architecture">4. Maintaining architecture</h2>
+<p>As the Lab grows, the number of elements (Clusters, namespaces, replicasets, pods etc.) keep increasing, making it harder to keep track of the architecture, and wastes time trying to develop it.</p>
+<h3 id="solution_3">Solution</h3>
+<p>I found a tool called KubeDiagrams which solves this by using the manifests,helm, and kubectl to determine the state of the environment. KubeDiagrams can also be integrated into CI/CD pipelines and is suitable</p>
+<p><img alt="alt text" src="../resources/dev-diagram.png" /></p>
+<h2 id="5-termination-period-taking-too-long">5. Termination Period taking too long</h2>
+<p>One of my pods was taking too long to terminate, although it eventually did, the possibility that it wouldn't always terminate on-time still existed</p>
+<h3 id="solution_4">solution</h3>
+<p>To prevent this i added a termination grace period cluster-wide on all deployments</p>
+<h2 id="6-stateful-postgres-error-residual-data-from-pvc">6. Stateful Postgres Error - Residual data from PVC</h2>
+<p>I made an error with an init container in the pod. It was writing a txt file to the path of the volumeMount. The pod went into a crashBackLoop. </p>
+<h3 id="solution_5">Solution</h3>
+<p>I didn't realize that postgres runs an initDB on that path to check if it's empty. I fixed that by deleting the init container, but I was still getting the same error. I realized that the pvc (with the edited path) used was still available and the pod was connecting to it. I deleted the old pvc and re-ran the manifest, which successfully provisioned the pod.</p>
+<h2 id="7-staging-environment-pods-connecting-to-wrong-database">7. Staging Environment Pods connecting to wrong Database</h2>
+<p>The pods in the staging environment were using the dev environments postgresql instance instead of their envionment's. This misconfiguration didn't lead to any problems, but was found when i was auiting the yaml files and noticed it.</p>
+<h3 id="solution_6">Solution</h3>
+<p>For the Go API pods to connect to the postgresql databases , the FQDN for the service has to be used. This FQDN <code>postgres-headless-service.dev.svc.cluster.local</code> was specified in the <code>go-api-credentials</code> yaml initially. The issue however was there are two environments. Meaning if this yaml was applied as well in the staging environment it would point to the dev environments POstgres instance, ignoring its own. </p>
+<p>To fix this I seperated the go-api-credentials yaml into two <code>go-api-credentials-dev</code> and <code>go-api-credentials-staging</code></p>
+<h2 id="8-coredns-caused-a-cluster-wide-failure">8. CoreDNS Caused a Cluster-wide Failure</h2>
+<p>The Go API Pods across the cluster were stuck in a CrashBackLoop cycle. While some might occasionally connect briefly, the majority consistently failed to establish a database connection. At the same time my ISP eas experiencing a major downtime in my region.</p>
+<h3 id="solution_7">Solution</h3>
+<p>My initial troubleshooting involved deleting the Go API deployment and re-deploying it using a different ISP. This, however, led to the same issue, ruling out the external network as the sole cause. The Go API pod logs, while initially confusing, consistently showed a <code>failed to connect to postgres-headless-service.dev.svc.cluster.local</code> error, specifically indicating a problem resolving the database service's IP address. This was strange, since the PostgreSQL database pod and its headless service were working fine.</p>
+<p>I decided to test the connectivity from within the cluster using a busybox pod. Running <code>nc -vz postgres-headless-service.dev.svc.cluster.local 5432</code> from the busybox pod. This returned a "bad address" error. This confirmed that DNS resolution for the database service was failing from inside the cluster, indicating CoreDNS as the potential issue.</p>
+<p>After inspecting the CoreDNS pods in the kube-system namespace, they initially appeared Running. However, diving deeper into their logs revealed critical errors: CoreDNS was repeatedly failing to connect to the Kubernetes API server (the kubernetes service at 10.96.0.1:443) with "dial tcp i/o timeout" messages. This meant CoreDNS was "blind" to the cluster's services and endpoints, hence unable to resolve service names.</p>
+<p>This pointed to a fundamental, cluster-wide network breakdown, likely stemming from a corrupted state in Kind's underlying Docker network bridge hightened by the recent external network issues. Given the severity of the problem, a full cluster reset was done. After a clean recreation of the Kind cluster and redeploying my applications, all core components became stable, and the Go API pods successfully connected to the PostgreSQL database</p>
+<h2 id="9-pipeline-keeps-building-on-every-commit-the-irony">9. Pipeline keeps building on every commit (the irony!)</h2>
+<p>Everytime I made a commit regardless of if it affected the the dockerfiles or backend code, or not the pipeline would run.</p>
+<h2 id="solution_8">Solution</h2>
+<p>This was due to my faulty design of the pipeline. I fixed the pipeline to only run when the code involving the deployed services were changed</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
