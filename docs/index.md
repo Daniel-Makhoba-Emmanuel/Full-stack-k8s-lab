@@ -8,4 +8,4 @@ You can reach out through any of the following, even if it's to just make a new 
 
 * [:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/danielmakhobaemmanuel)
 * [:fontawesome-solid-envelope: Email](mailto:iamdanielemmanuelmark5@gmail.com)
-* [:fontawesome-brands-discord: Discord](https://discordapp.com/users/YOUR_DISCORD_USERNAME_OR_ID) # Replace with your actual Discord link
+* [:fontawesome-brands-discord: Discord](https://discordapp.com/users/daniel_makhoba_e)
