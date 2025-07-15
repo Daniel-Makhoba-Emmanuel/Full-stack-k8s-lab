@@ -4,16 +4,20 @@ nav:
   - Home: index.md
   - Lab Setup:
     - Architecture: lab-setup/architecture.md
-    - Getting Started: lab-setup/getting-started.md
   - ChangeLog: CHANGELOG.md
   - Problems and Solutions Faced: Problems-and-solutions-faced.md
-  - Tools: openSource_tools_used.md
+  - Tools: openSource_Tools_used.md
   - Projects:
-    - Deploying a StatefulSet (Basic Nginx): Projects/Deploying a StatefulSet (Basic Nginx).md
-    - Deploying a StatefulSet (postgres): Projects/Deploying a StatefulSet (postgres).md
+    - Ingress Controller (Traefik): Projects/Ingress Controller (Traefik).md
 
 theme:
   name: material
 
 plugins:
   - search
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
